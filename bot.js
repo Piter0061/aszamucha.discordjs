@@ -166,3 +166,13 @@ function goWiki(message, parts){
 		}
 });
 }
+process.on('exit', function() {/// executed on shutdown
+	console.log('About to close');
+	client.user.setPresence({
+        status: "offline",  //You can show online, idle....
+        game: {
+            name: "to ja, towja stara",  //The message shown
+            type: "STREAMING" //PLAYING: WATCHING: LISTENING: STREAMING:
+        }
+    });
+});
