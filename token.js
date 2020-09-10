@@ -1,4 +1,4 @@
-var tokenmein = "your api token here";
+var tokenmein = "abcdefg";
 exports.tokenn = function () {
     return tokenmein;
   };
