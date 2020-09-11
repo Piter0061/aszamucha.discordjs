@@ -6,22 +6,27 @@
 var cheerio = require("cheerio"); /* Used to extract html content, based on jQuery || install with npm install cheerio */
 var request = require("request"); /* Used to make requests to URLs and fetch response  || install with npm install request */
 var discord = require("discord.js");
-var token = require("./token.js");// having token in separate file
+//var token = require("./token.js");// having token in separate file
 var client = new discord.Client();
+
+var myArgs = process.argv.slice(2);
+//console.log('myArgs: ', myArgs);
 
 //console.log(token.tokenn());
 // Login into discord using bot token (do not share token with anyone!).
-client.login(token.tokenn());
-
+if (typeof myArgs[0] !== 'undefined'){
+	client.login(myArgs[0]);
+}else{
+	console.log('usage: node bot.js [token]');
+	process.exit()
+}
 client.on("ready", function() {
 	console.log("logged in");
 	client.user.setPresence({
         status: "online",  //You can show online, idle....
-        game: {
-            name: "to ja, towja stara",  //The message shown
-            type: "STREAMING" //PLAYING: WATCHING: LISTENING: STREAMING:
-        }
-    });
+
+    }).then(console.log)
+	.catch(console.error);
 });
 
 
@@ -166,13 +171,26 @@ function goWiki(message, parts){
 		}
 });
 }
-process.on('exit', function() {/// executed on shutdown
-	console.log('About to close');
+
+if (process.platform === "win32") {
+	var rl = require("readline").createInterface({
+	  input: process.stdin,
+	  output: process.stdout
+	});
+  
+	rl.on("SIGINT", function () {
+	  process.emit("SIGINT");
+	});
+  }
+  
+  process.on("SIGINT", function () {
+	//graceful shutdown
+
 	client.user.setPresence({
-        status: "offline",  //You can show online, idle....
-        game: {
-            name: "to ja, towja stara",  //The message shown
-            type: "STREAMING" //PLAYING: WATCHING: LISTENING: STREAMING:
-        }
-    });
-});
+		        status: "dnd",  //You can show online, idle...
+		    }).then(console.log)
+			.catch(console.error);
+			
+	console.log('exiting');
+	process.exit();
+  });
