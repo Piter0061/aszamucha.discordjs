@@ -24,7 +24,10 @@ client.on("ready", function() {
 	console.log("logged in");
 	client.user.setPresence({
         status: "online",  //You can show online, idle....
-
+		game: { 
+            name: '!help',
+            type: 'WATCHING'
+        }
     }).then(console.log)
 	.catch(console.error);
 });
@@ -41,12 +44,25 @@ client.on("message", function(message) {
 	}
 	if (parts[0] === "!hentai") { // Check if first part of message is !hentai command
 
-		hentai(message); // Pass requester message to hentai() function
+		goReddit(message, "http://reddit.com/r/hentai.json"); // Pass requester message to hentai() function
 	}
 	if (parts[0] === "!wiki") { // Check if first part of message is !wiki command
 		
 		goWiki(message, parts); // Pass requester message to goWiki() function
 	}
+	if (parts[0] === "!porn") { 
+		
+		goReddit(message, "http://reddit.com/r/porn.json"); //DONE
+	}
+	if (parts[0] === "!help") { 
+		
+		message.channel.send(help);
+	}
+	if (parts[0] === "!huj") { 
+		
+		goReddit(message, "http://reddit.com/r/gayporn.json"); // DONE
+	}
+
 });
 ////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////functions////////////////////////////////////////
@@ -102,9 +118,9 @@ function image(message, parts) {
 	});
 
 }
-function hentai(message) {
+function goReddit(message, redURL) {
 	let options = {
-	    url: "http://reddit.com/r/hentai.json", /////////make reddit api request
+	    url: redURL, /////////make reddit api request
 	    method: "GET",
 	    headers: {
 	        "Accept": "text/html",
@@ -170,7 +186,7 @@ function goWiki(message, parts){
 			message.channel.send(trimmedString);
 		}
 });
-}
+
 
 if (process.platform === "win32") {
 	var rl = require("readline").createInterface({
@@ -194,3 +210,26 @@ if (process.platform === "win32") {
 	console.log('exiting');
 	process.exit();
   });
+
+}
+const help = `asza mucha to bot stworzony, rozwijany i hostowany przez @Pioter.
+komendy:
+	nieetyczne:
+		!hentai 		   - wysyła hentai (żródło https:reddit.com/r/hentai)
+		!porn 			   - wysya normalnie porno
+		!huj - wysyła gejowskiego hentaia (nwm co kto lubi)
+	reszta:
+		!img <co wyszukac> - wyszukuje zdj w google images
+		!wiki <co znalesc> - wyszukuje dany temat w wikipedii
+	
+Kiedys (nwm zrobie jak bede miau czas):
+	!tweeet <wiad> - tweetuje waidomość na profilu aszy muchy
+	!dzwionk <nazwa> - wydaje podany dzwienk na danym kanale głosowym
+
+sory za wszystkie błędy które mogą wyskoczyć ale no kurwa no.
+jak cos sie zjebie prubować tyle razy póki zadziaa.
+
+sugestie są bardzo pomocne
+
+strona github: https://github.com/Piter0061/aszamucha.discordjs
+`;
