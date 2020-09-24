@@ -212,24 +212,43 @@ if (process.platform === "win32") {
   });
 
 }
-const help = `asza mucha to bot stworzony, rozwijany i hostowany przez @Pioter.
-komendy:
-	nieetyczne:
-		!hentai 		   - wysyła hentai (żródło https:reddit.com/r/hentai)
-		!porn 			   - wysya normalnie porno
-		!huj - wysyła gejowskiego hentaia (nwm co kto lubi)
-	reszta:
-		!img <co wyszukac> - wyszukuje zdj w google images
-		!wiki <co znalesc> - wyszukuje dany temat w wikipedii
+// const help = `asza mucha to bot stworzony, rozwijany i hostowany przez @Pioter.
+// komendy:
+// 	nieetyczne:
+// 		!hentai 		   - wysyła hentai (żródło https:reddit.com/r/hentai)
+// 		!porn 			   - wysya normalnie porno (często sie psuje nwm czemu)
+// 		!huj - wysyła gejowskiego hentaia (nwm co kto lubi)
+// 	reszta:
+// 		!img <co wyszukac> - wyszukuje zdj w google images
+// 		!wiki <co znalesc> - wyszukuje dany temat w wikipedii
 	
-Kiedys (nwm zrobie jak bede miau czas):
-	!tweeet <wiad> - tweetuje waidomość na profilu aszy muchy
-	!dzwionk <nazwa> - wydaje podany dzwienk na danym kanale głosowym
+// Kiedys (nwm zrobie jak bede miau czas):
+// 	!tweeet <wiad> - tweetuje waidomość na profilu aszy muchy
+// 	!dzwionk <nazwa> - wydaje podany dzwienk na danym kanale głosowym
 
-sory za wszystkie błędy które mogą wyskoczyć ale no kurwa no.
-jak cos sie zjebie prubować tyle razy póki zadziaa.
+// sory za wszystkie błędy które mogą wyskoczyć ale no kurwa no.
+// jak cos sie zjebie prubować tyle razy póki zadziaa.
 
-sugestie są bardzo pomocne
+// sugestie są bardzo pomocne
 
-strona github: https://github.com/Piter0061/aszamucha.discordjs
-`;
+// strona github: https://github.com/Piter0061/aszamucha.discordjs
+// `;
+const help = new discord.MessageEmbed()
+	.setColor('#0099ff')
+	.setTitle('pomoc drogowa')
+	.setURL('https://discord.js.org/')
+	.setAuthor('Asza mucha', 'https://imgur.com/amCq93F.png', 'https://discord.js.org')
+	.setDescription('no niestety')
+	.setThumbnail('https://i.imgur.com/amCq93F.png')
+	.addFields(
+		//{ name: 'nie etyczne:', value: '(nie ładnie)'},
+		{ name: 'hentai', value: '`!hentai`', inline: true },
+		{ name: 'zwykłe porn', value: '`!porn`', inline: true },
+		{ name: 'nie pytaj', value: '`!huj`', inline: true },
+		{ name: '\u200B', value: '\u200B' },
+		//{ name: 'reszta', value: '(no tak, reszta)' },
+		{ name: 'wyszukuje zdj w google images', value: '`!img <co wszukac>`'},
+	)
+	.addField('wyszukuje dany temat w wikipedii', '`!wiki <co znalesc>`')
+	.setTimestamp()
+	.setFooter('n o', 'https://i.imgur.com/amCq93F.png');
