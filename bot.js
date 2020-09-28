@@ -212,27 +212,7 @@ if (process.platform === "win32") {
   });
 
 }
-// const help = `asza mucha to bot stworzony, rozwijany i hostowany przez @Pioter.
-// komendy:
-// 	nieetyczne:
-// 		!hentai 		   - wysyła hentai (żródło https:reddit.com/r/hentai)
-// 		!porn 			   - wysya normalnie porno (często sie psuje nwm czemu)
-// 		!huj - wysyła gejowskiego hentaia (nwm co kto lubi)
-// 	reszta:
-// 		!img <co wyszukac> - wyszukuje zdj w google images
-// 		!wiki <co znalesc> - wyszukuje dany temat w wikipedii
-	
-// Kiedys (nwm zrobie jak bede miau czas):
-// 	!tweeet <wiad> - tweetuje waidomość na profilu aszy muchy
-// 	!dzwionk <nazwa> - wydaje podany dzwienk na danym kanale głosowym
 
-// sory za wszystkie błędy które mogą wyskoczyć ale no kurwa no.
-// jak cos sie zjebie prubować tyle razy póki zadziaa.
-
-// sugestie są bardzo pomocne
-
-// strona github: https://github.com/Piter0061/aszamucha.discordjs
-// `;
 const help = new discord.MessageEmbed()
 	.setColor('#0099ff')
 	.setTitle('pomoc drogowa')
